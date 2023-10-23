@@ -1,0 +1,166 @@
+<h1 class="text-black text-center p-3 fs-1">Sign up</h1>
+
+<div class="row">
+  <div class="col"></div>
+
+  <div class="col-md-4">
+    <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+      <div class="container">
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-envelope"></i
+          ></span>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+            ngModel
+            required
+            email
+            #modelEmail="ngModel"
+            [ngClass]="
+              modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''
+            "
+          />
+          <div
+            *ngIf="modelEmail.errors?.['required'] && modelEmail.dirty"
+            class="invalid-feedback"
+          >
+            Please enter valid email Adddress
+          </div>
+        </div>
+
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-user"></i
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="Username"
+            ngModel
+            required
+            minlength="3"
+            #modelUsername="ngModel"
+            [ngClass]="
+              modelUsername.invalid && modelUsername.dirty ? 'is-invalid' : ''
+            "
+          />
+          <div
+            *ngIf="modelUsername.errors?.['required'] && modelUsername.dirty"
+            class="invalid-feedback"
+          >
+            Please enter a name
+          </div>
+        </div>
+
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-lock"></i
+          ></span>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            value="password"
+            placeholder="password"
+            ngModel
+            password
+            required
+            minlength="3"
+            #modelPassword="ngModel"
+            [ngClass]="
+              modelPassword.invalid && modelPassword.dirty ? 'is-invalid' : ''
+            "
+          />
+          <!-- <div
+            *ngIf="modelPassword.errors?.['required'] && modelPassword.dirty"
+            class="invalid-feedback"
+          >
+            Please enter a valid Password
+          </div> -->
+          <div *ngIf="modelPassword.invalid" class="invalid-feedback">
+            Please enter atleast
+            {{modelPassword?.errors?.['minlength']?.['requiredLength']}}
+            characters
+          </div>
+        </div>
+
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-lock"></i
+          ></span>
+          <input
+            type="password"
+            name="confirmPassword"
+            class="form-control"
+            value="password"
+            placeholder=" Confirm Password"
+            ngModel
+            password
+            required
+            minlength="3"
+            #modelConfirmPassword="ngModel"
+            [ngClass]="
+              modelConfirmPassword.invalid && modelConfirmPassword.dirty
+                ? 'is-invalid'
+                : ''
+            "
+          />
+
+          <!-- <div
+            *ngIf="modelConfirmPassword.errors?.['required'] && modelConfirmPassword.dirty"
+            class="invalid-feedback"
+          >
+            Please confirm your password.
+          </div> -->
+          <!-- <div
+            *ngIf="modelPassword.value !== modelConfirmPassword.value"
+            class="invalid-feedback"
+          >
+            Passwords do not match.
+          </div> -->
+          <div *ngIf="modelConfirmPassword.invalid" class="invalid-feedback">
+            Please enter atleast
+            {{modelConfirmPassword?.errors?.['minlength']?.['requiredLength']}}
+            characters
+          </div>
+        </div>
+        <div *ngIf="error.length > 0" class="text-danger">{{ error }}</div>
+        <div class="d-grid gap-2 py-1">
+          <button
+            class="btn btn-info"
+            type="submit"
+            [disabled]="!registerForm.valid"
+          >
+            Sign Up
+          </button>
+          <!-- <button
+            class="btn btn-info"
+            type="submit"
+            [disabled]="
+              !registerForm.valid ||
+              modelPassword.invalid ||
+              modelConfirmPassword.invalid ||
+              modelPassword.value !== modelConfirmPassword.value
+            "
+          >
+            Sign Up
+          </button> -->
+        </div>
+        <p class="text-danger" id="signupError"></p>
+        <div class="justify-content-between align-items-center">
+          <div class="text-center py-0">
+            <p>Already an user? <a href="/login">Sign in</a></p>
+          </div>
+        </div>
+
+        <div class="text-center"></div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col"></div>
+</div>

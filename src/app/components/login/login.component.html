@@ -1,0 +1,88 @@
+<h1 class="text-black text-center p-3 fs-1">Sign In</h1>
+<div class="row">
+  <div class="col"></div>
+  <!-- {{ loginForm.value | json }} -->
+  <div class="col-md-4">
+    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+      <div class="container">
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-envelope"></i
+          ></span>
+
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+            ngModel
+            required
+            email
+            #modelEmail="ngModel"
+            [ngClass]="
+              modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''
+            "
+          />
+          <div
+            *ngIf="modelEmail.errors?.['required'] && modelEmail.dirty"
+            class="invalid-feedback"
+          >
+            Please enter valid email Adddress
+          </div>
+        </div>
+
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-lock"></i
+          ></span>
+
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            value="password"
+            placeholder="password"
+            ngModel
+            password
+            required
+            minlength="3"
+            #modelPassword="ngModel"
+            [ngClass]="
+              modelPassword.invalid && modelPassword.dirty ? 'is-invalid' : ''
+            "
+          />
+          <!-- <div
+            *ngIf="modelPassword.errors?.['required'] && modelPassword.touched"
+            class="invalid-feedback"
+          >
+            Please enter a valid Password
+          </div> -->
+          <div *ngIf="modelPassword.invalid" class="invalid-feedback">
+            Please enter atleast {{modelPassword?.errors?.['minlength']?.['requiredLength']}}
+             characters
+          </div>
+         
+         
+        </div>
+        <div *ngIf="error.length>0" class="text-danger">{{error}}</div>
+        <div class="justify-content-between align-items-center"></div>
+        <div class="d-grid gap-2 py-1">
+          <button
+            class="btn btn-info"
+            type="submit"
+            [disabled]="!loginForm.valid"
+          >
+            Sign in
+          </button>
+        </div>
+        <div><p class="text-danger" id="errorSignin"></p></div>
+        <div class="text-center py-1">
+          <p>Not a member? <a href="/register">Sign up</a></p>
+        </div>
+        <div class="text-center"></div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col"></div>
+</div>

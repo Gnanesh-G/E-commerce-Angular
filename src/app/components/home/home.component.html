@@ -1,0 +1,22 @@
+
+<div class="container">
+<h1 id="text" class="text-black text-center p-3 fs-1">Home</h1>
+<h1 class="text-center">Products</h1>
+<div class="card-deck row text-center">
+  <div *ngFor="let product of Products"  id="productcard" class="col-3 card">
+    <img
+      [src]="product.image"
+      class="card-img-top image-fluid w-50 h-50 mx-5"
+      alt="product.title"
+      height="25vh" width="25vw"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ product.title }}</h5>
+      <p class="card-text">
+        Rs.{{ product.price }}
+      </p>
+      <button class="btn btn-primary"  (click)="addToCart(product.id)">Add to Cart</button>
+    </div>
+  </div>
+</div>
+</div>
