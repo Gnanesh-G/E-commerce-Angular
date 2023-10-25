@@ -13,7 +13,7 @@ export class LoginComponent {
 
   onSubmit(loginForm: NgForm) {
     if (this.authService.isValidUser(loginForm.value)) {
-      this.router.navigate([''], { replaceUrl: true });
+      this.router.navigate(['home'], { replaceUrl: true });
       
       
     }
